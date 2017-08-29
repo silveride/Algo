@@ -8,6 +8,10 @@ Heap::Heap(): queue_size(0) {
 	H_LOG("Initialising Heap..")
 }
 
+int Heap :: length() const {
+	return queue_size;
+}
+
 int Heap::indexParent(int n) {
 	if (n == 0) return -1; // root parent
 
@@ -82,13 +86,9 @@ int Heap::deleteMax() {
 	return ret;
 }
 
-void Heap::heapSort(std::vector<int>& result) {
-
-}
-
 void Heap::print() {
 
-	cout << "Printing queue of size" <<queue_size<< endl;
+	cout << "Printing queue of size" << queue_size << endl;
 
 	// print the array order. good for debuggin.
 	for (int i = 0; i < queue_size; ++i) {
@@ -96,3 +96,22 @@ void Heap::print() {
 	}
 
 }
+
+
+
+void heapSort(std::vector<int>& result) {
+	Heap h;
+
+	for (auto& i : result) {
+		h.insertElement(i);
+	}
+
+	result.clear();
+
+	int size = h.length();
+
+	for (int i = 0; i < size; ++i) {
+		result.push_back(h.deleteMax());
+	}
+}
+
