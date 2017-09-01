@@ -16,7 +16,7 @@
 
 #endif
 	
-
+#include <vector>
 
 class Heap {
 
@@ -40,6 +40,8 @@ public:
 	int deleteMax();
 
 	void heapSort(std::vector<int>& result);
+    
+    void heapify(std::vector<int>& heap_items);
 
 	void print();
 

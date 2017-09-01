@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 
 #include "Heap.h"
 
@@ -67,6 +67,25 @@ void Heap::bubbleDown(int index) {
 }
 
 
+void Heap::heapify(vector<int>& heap_items) {
+    
+    queue_size = 0;
+    
+    // Copy all items into the internal queue
+    for (auto& x : heap_items) {
+        queue[queue_size++] = x;
+    }
+    
+    // The last n/2 elements in the queue are leaves with no children
+    // This algo is going ot run faster than the nlogn (ie inserting n elements
+    // into a binary tree.
+    for( int i= queue_size-1; i >=0 ; --i ) {
+        bubbleDown(i);
+    }
+    
+}
+
+
 int Heap::deleteMax() {
 
 	// Remove the top most element
@@ -83,7 +102,12 @@ int Heap::deleteMax() {
 }
 
 void Heap::heapSort(std::vector<int>& result) {
+    
+    int count = queue_size;
 
+    for(int i =0; i< count; ++i){
+        result.push_back(deleteMax());
+    }
 }
 
 void Heap::print() {
